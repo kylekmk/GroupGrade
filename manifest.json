@@ -11,5 +11,8 @@
     "browser_action" : {
         "default_popup": "popup.html",
         "default_title": "Group Grade"
-    }
+    },
+    "permissions": [
+        "storage"
+    ]
 }

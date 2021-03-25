@@ -1,0 +1,23 @@
+body {
+    width: 600px;
+}
+
+#criteria {
+    width: 30px;
+}
+
+#autofill {
+    
+}
+
+.criteria-holder {
+    float: left;
+}
+
+.comment {
+    width: 300px;
+}
+
+.grade {
+    width: 200px;
+}
