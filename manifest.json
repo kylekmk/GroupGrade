@@ -13,8 +13,6 @@
         "default_title": "Group Grade"
     },
     "permissions": [
-        "storage",
-        "clipboardWrite",
-        "clipboardRead"
+        "storage"
     ]
 }
