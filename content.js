@@ -53,7 +53,6 @@ chrome.runtime.onMessage.addListener(function (request) {
 
          // grab grades text boxes
          for (i = 0; i < inputs.length; i++) {
-            console.log(inputs[i].type);
             if (inputs[i].type == 'text') {
                grades.push(inputs[i]);
             }
@@ -66,14 +65,32 @@ chrome.runtime.onMessage.addListener(function (request) {
             // ABORT SOMETHING IS WRONG
          }
 
+
          // Add the desired comments
          for (i = 0; i < comments.length; i++) {
+
+            comments[i].select();
+            var keyEvent = new KeyboardEvent("keydown", { key: "a", char: "a", shiftKey: true });
+
+            document.dispatchEvent(keyEvent);
+
+            comments[i].innerText = request.comments[i];
             comments[i].value = request.comments[i];
+            comments[i].innerHTML = request.comments[i];
+            comments[i].textContent = request.comments[i];
+
+            document.dispatchEvent(keyEvent);
+
          }
 
          // Add the desired grades
          for (i = 0; i < grades.length; i++) {
+            grades[i].setAttribute('value', request.grades[i]);
+            grades[i].setAttribute('aria-invalid', false);
+
+            grades[i].innerText = request.grades[i];
             grades[i].value = request.grades[i];
+            grades[i].innerHTML = request.grades[i];
          }
          console.log("DONE");
       }

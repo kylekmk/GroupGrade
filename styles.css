@@ -1,5 +1,5 @@
 body {
-    width: 600px;
+    width: 350px;
 }
 
 #criteria {
@@ -15,9 +15,13 @@ body {
 }
 
 .comment {
+    height: 50px;
     width: 300px;
+    resize: vertical;
 }
 
 .grade {
-    width: 200px;
+    width: 25px;
+    height: 50px;
+    resize: none;
 }

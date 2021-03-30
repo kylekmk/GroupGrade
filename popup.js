@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    const DELIM = "*!*flag*!*";
     var comments = new Array();
     var grades = new Array();
     var rubric_obj = {
@@ -9,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var num_criteria;
 
     getCurrentRubric();
-    // applyTables();
 
     console.log(JSON.stringify(rubric_obj));
 
@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('autofill').onclick = function () { setValue(); };
     document.getElementById('clear').onclick = function () { clearInputs();};
+    // FEATURE TO BE IMPLEMENTED LATER
+    // Adjust the amount of criteria in a rubric
     // document.getElementById('criteria').onchange = function () {
 
     //     addCriteria();
@@ -28,7 +30,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // };
 
-    // temp code
+    // TEMPORARY CODE
+    // Adds a fixed amount of criteria (9 bc the DM project has 9)
     var i;
     for (i = 0; i < 9; i++) {
         addCriteria();
@@ -36,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // temp code ^^^
 
 
-
+    // sends request to Chrome API to autofill the page
     function setValue() {
         console.log('set to ' + JSON.stringify(rubric_obj));
         chrome.tabs.query({ currentWindow: true, active: true },
@@ -45,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
+    // Wipes all text boxes
     function clearInputs () {
         localStorage['grades'] = [];
         localStorage['comments'] = [];
@@ -56,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // Saves grade values on change
     function saveGrades() {
         var grade_arr = new Array();
         for (i = 0; i < grades.length; i++) {
@@ -67,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage['grades'] = grade_arr;
     }
 
+    // Saves comment values on change
     function saveComments() {
         var comment_arr = new Array();
         for (i = 0; i < comments.length; i++) {
@@ -74,10 +80,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         rubric_obj.comments = comment_arr;
-
+        console.log (comment_arr);
+        // Comments may contain commas so a custom delim is necessary
+        for (i = 1; i < comment_arr.length; i++){
+            comment_arr[i] = DELIM + comment_arr[i];
+        }
         localStorage['comments'] = comment_arr;
+        console.log (comment_arr);
+
     }
 
+    // Updates to most recent rubric
     function getCurrentRubric() {
         var saved = true;
 
@@ -86,16 +99,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (localStorage['comments'] != undefined) {
-            rubric_obj.comments = localStorage['comments'].split(',');
+            rubric_obj.comments = localStorage['comments'].split(',' + DELIM);
         }
 
     }
 
+    // Adds two text boxes, comment and grade
     function addCriteria() {
         var newComment = document.createElement('textarea');
         var newGrade = document.createElement('textarea');
         var div = document.createElement('div');
-        div.className = 'criteria holder'
+        div.className = 'criteria-holder'
 
         if (rubric_obj.comments.length > comments.length) {
             newComment.value = rubric_obj.comments[comments.length];
@@ -115,24 +129,5 @@ document.addEventListener('DOMContentLoaded', function () {
         div.appendChild(newGrade);
         rubric_table.appendChild(div);
     }
-
-
-    // // EXAMPLE CODE
-    // chrome.storage.sync.set({ 'criteria': rubric_obj }, function () {
-    //     console.log('Value is set to ', rubric_obj);
-    // });
-
-    // // EXAMPLE CODE
-    // chrome.storage.sync.get('criteria', function (result) {
-    //     console.log('Value is currently ' + result.criteria.comments);
-    // });
-
-     // function applyTables() {
-    //     chrome.storage.sync.get('num_criteria', function (result) {
-    //         if (result.num_criteria != undefined) {
-    //             document.getElementById('criteria').value = result.num_criteria;
-    //         }
-    //     })
-    // }
 
 }, false);
