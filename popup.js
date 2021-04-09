@@ -69,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         rubric_obj.grades = grade_arr;
-
         localStorage['grades'] = grade_arr;
     }
 
@@ -88,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         localStorage['comments'] = comment_arr;
         console.log (comment_arr);
-
     }
 
     // Updates to most recent rubric
