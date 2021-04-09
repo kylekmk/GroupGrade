@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // sends request to Chrome API to autofill the page
     function setValue() {
+        window.close();
         console.log('set to ' + JSON.stringify(rubric_obj));
         chrome.tabs.query({ currentWindow: true, active: true },
             function (tabs) {

@@ -19,101 +19,72 @@ chrome.runtime.onMessage.addListener(function (request) {
    }
    console.log(rubric);
 
-   // find proper tbody element
-   if (table_found) {
-      var children = rubric.children;
-      var child_found = false;
-      var tbody;
-      i = 0;
-
-      console.log(children);
-      console.log(children.length);
-
-      // grab table body containing inputs and comments
-      while (!child_found && children && i < children.length) {
-         console.log(children[i].tagName);
-         console.log(children[i].tagName);
-         if (children[i].tagName == 'TBODY') {
-            tbody = children[i];
-            child_found = true;
-            console.log("FOUND " + children[i].tagName);
-
-         }
-         i++;
-      }
-
-      console.log(tbody);
-      if (tbody) {
-         var comments = tbody.getElementsByTagName('textarea');
-         var inputs = tbody.getElementsByTagName('input');
-         var grades = new Array();
-
-         console.log(comments);
-         console.log(inputs);
-
-         // grab grades text boxes
-         for (i = 0; i < inputs.length; i++) {
-            if (inputs[i].type == 'text') {
-               grades.push(inputs[i]);
-            }
-         }
-         console.log(grades);
-
-         if (request.comments.length != comments.length || request.grades.length != grades.length) {
-            alert("ABORT");
-            return;
-            // ABORT SOMETHING IS WRONG
-         }
-
-
-         // Add the desired comments
-         for (i = 0; i < comments.length; i++) {
-
-            comments[i].select();
-            var keyEvent = new KeyboardEvent("keydown", { key: "a", char: "a", shiftKey: true });
-
-            document.dispatchEvent(keyEvent);
-
-            comments[i].innerText = request.comments[i];
-            comments[i].value = request.comments[i];
-            comments[i].innerHTML = request.comments[i];
-            comments[i].textContent = request.comments[i];
-
-            document.dispatchEvent(keyEvent);
-
-         }
-
-         // Add the desired grades
-         for (i = 0; i < grades.length; i++) {
-            grades[i].setAttribute('value', request.grades[i]);
-            grades[i].setAttribute('aria-invalid', false);
-
-            grades[i].innerText = request.grades[i];
-            grades[i].value = request.grades[i];
-            grades[i].innerHTML = request.grades[i];
-         }
-         console.log("DONE");
-      }
-
+   // exit if no table on the page
+   if (!table_found) {
+      alert('no table, exiting');
+      return;
    }
 
-   // var text_areas = document.getElementsByTagName('textarea');
-   // var comments = new Array();
-   // var i;
-   // console.log(text_areas);
+   var children = rubric.children;
+   var child_found = false;
+   var tbody;
+   i = 0;
 
-   // for (i = 0; i < text_areas.length; i++){
-   //    var curr_text = text_areas[i];
+   // grab table body containing the inputs for grades and comments
+   while (!child_found && children && i < children.length) {
+      if (children[i].tagName == 'TBODY') {
+         tbody = children[i];
+         child_found = true;
+      }
+      i++;
+   }
 
-   //    if (!(curr_text.id == 'criterion_comments_textarea' || curr_text.id == 'rating_form_description' || curr_text.id == 'speed_grader_comment_textarea' || curr_text.className == 'long_description' || curr_text.className == 'description')){
-   //       comments.push(curr_text);
-   //    }
-   // }
+   console.log(tbody);
+   if (!tbody) {
+      alert('no tbody, exiting');
+      return;
+   }
 
-   // console.log(comments);
+   var comments = tbody.querySelectorAll('textarea');
+   var grades = tbody.querySelectorAll("input[type='text']");
 
-   // for (i = 0; i < comments.length; i++){
-   //    comments[i].value = request;
-   // }
+   console.log(comments);
+   console.log(grades);
+
+   if (request.comments.length != comments.length || request.grades.length != grades.length) {
+      alert("Rubric uneven, exiting autofill.");
+      return;
+      // ABORT SOMETHING IS WRONG
+   }
+
+
+
+   // Add the desired grades
+   // Cuts from the comments text area since the grade input functions differently
+   for (i = 0; i < grades.length; i++) {
+      // makes sure empty fields are copied/pasted
+      if (request.grades[i] === "") {
+         request.grades[i] = " ";
+      }
+      comments[i].value = request.grades[i];
+      comments[i].select();
+      document.execCommand("cut");
+      grades[i].select();
+      document.execCommand("paste");
+   }
+
+   // Add the desired comments
+   for (i = 0; i < comments.length; i++) {
+      // makes sure empty fields are copied/pasted
+      if (request.comments[i] === "") {
+         request.comments[i] = " ";
+      }
+      comments[i].value = request.comments[i];
+      comments[i].select();
+      document.execCommand("copy");
+      document.execCommand("paste");
+   }
+
+
 
 });
