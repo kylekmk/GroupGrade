@@ -9,7 +9,7 @@ chrome.runtime.onMessage.addListener(function (request) {
    var tbody = document.querySelector(query_const);
 
    // confirm if tbody exists
-   if (tbody !== undefined) {
+   if (tbody === undefined) {
       alert('no tbody, exiting');
       return;
    }
