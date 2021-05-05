@@ -2,6 +2,13 @@ chrome.runtime.onMessage.addListener(function (request) {
 
    console.log(request);
 
+   if (document.querySelector('#rubric_full').style['display'] === 'none'){
+      document.querySelector('.toggle_full_rubric').click();
+   }
+
+   navigator.clipboard.readText().then(
+      clipText => console.log(clipText));
+
    let query_const = '.react-rubric tbody';
    var i = 0;
 
@@ -43,7 +50,7 @@ chrome.runtime.onMessage.addListener(function (request) {
    // Add the desired comments
    for (i = 0; i < comments.length; i++) {
       // makes sure empty fields are copied/pasted
-      if (request.comments[i] === "") {
+      if (request.comments[i] === "" || request.comments[i] === '*!*flag*!*') {
          request.comments[i] = " ";
       }
       comments[i].value = request.comments[i];

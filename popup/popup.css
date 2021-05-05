@@ -1,0 +1,138 @@
+@import url(https://fonts.googleapis.com/css?family=Dosis:700);
+body {
+    background-color: #ecf0f1;
+    font-weight: bold;
+    letter-spacing: -.035em;
+    overflow: visible;
+    font-family: "Dosis", Helvetica, Arial, sans-serif;
+    color: #34495e;
+}
+
+#proj-name {
+    font-size: 2em;
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;
+}
+
+table {
+    background-color: #ecf0f1;
+    border: 1px solid black;
+    width: 500px;
+    table-layout: auto;
+}
+
+thead {
+    background: transparent;
+    text-align: center;
+    font-size: 1.5em;
+    vertical-align: middle;
+    font-family: Arial, Helvetica, sans-serif;
+    border-bottom: 2px dashed #bdc3c7;
+}
+
+tbody td {
+    border-top: 2px dashed #bdc3c7;
+}
+
+tfoot {
+    border-top: 2px solid #bdc3c7;
+}
+
+.criteria-holder {
+    float: left;
+}
+
+.comment {
+    margin: 10px;
+    height: 50px;
+    width: 300px;
+    border: none;
+}
+
+.td-criteria {
+    width: 25%;
+}
+
+.td-comment {
+    width: 50%;
+}
+
+.td-grade {
+    width: 25%;
+}
+
+.grade {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #2e3031;
+    color: #34495e;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+    width: 100%;
+    padding: 0 0;
+    margin: 0 0;
+    vertical-align: middle;
+    letter-spacing: -.035em;
+    text-shadow: white 1px 1px 1px;
+    overflow: visible;
+    float: left;
+}
+
+.grade:focus {
+    outline: none;
+}
+
+.maxPts {
+    float: left;
+    font-size: 2em;
+    margin: 0 0;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    color: #7a828a;
+}
+
+.criteria {
+    background: transparent;
+    text-align: center;
+    font-size: 1.25em;
+    vertical-align: middle;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+span {
+    background: transparent;
+    margin: auto 5px;
+    float: left;
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 25px;
+}
+
+/* hide scroll */
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    /* Remove scrollbar space */
+    background: transparent;
+}
+
+/* Optional: show position indicator in red */
+
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
+/* Hide input arrows */
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
