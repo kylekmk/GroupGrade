@@ -168,14 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log(idx);
                 console.log(nametaken);
 
-
-                if (proj_edit.isEditing) { // overwrite
-                    var overwrite = projects.projArr.findIndex(elem => elem.name === proj_edit.edit.name);
-                    projects.projArr[overwrite] = projObj;
-                } else if (!nametaken) { // all good to add
-                    projects.projArr.push(projObj);
-                    console.log('pushing');
-                } else { // cannot add project with the same name
+                if (nametaken) { // cannot add project with the same name
                     if (document.querySelector('#save-box span') === null) {
                         var warning = document.createElement('span');
                         warning.innerHTML = 'Name taken, change the project name'
@@ -185,6 +178,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.log(document.querySelector('#save-box span'));
                     return;
                 }
+
+
+                if (proj_edit.isEditing) { // overwrite
+                    var overwrite = projects.projArr.findIndex(elem => elem.name === proj_edit.edit.name);
+                    projects.projArr[overwrite] = projObj;
+                } else { // all good to add
+                    projects.projArr.push(projObj);
+                    console.log('pushing');
+                } 
+                
 
                 projects.selected = projects.projArr.length - 1;
                 chrome.storage.sync.set({ projects: projects }, () => {

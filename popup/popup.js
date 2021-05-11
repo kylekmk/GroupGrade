@@ -15,12 +15,15 @@ document.addEventListener('DOMContentLoaded', function () {
             ],
             selected: 0
         };
-        if (data.projects.projArr.length > 0) {
+
+        console.log(projectFile);
+        console.log(data);
+
+        if (data.projects !== undefined && data.projects.projArr !== undefined && data.projects.projArr.length > 0) {
             Object.assign(projectFile, data.projects);
         }
 
-        console.log(projectFile);
-        
+
         const DELIM = "*!*flag*!*";
 
         var project = projectFile.projArr[projectFile.selected];

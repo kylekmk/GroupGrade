@@ -10,9 +10,10 @@ body {
 
 #proj-name {
     font-size: 2em;
-    width: 100%;
+    width: 60%;
     text-align: left;
     vertical-align: middle;
+    margin: 0 0 0 0;
 }
 
 table {
@@ -125,8 +126,12 @@ button {
     font-weight: bold;
     text-align: center;
     border: 2px solid #34495e;
-    margin: 10px 0;
+    margin: 10px 5px;
     outline: none;
+}
+
+#btn-box {
+    float: right;
 }
 
 /* hide scroll */
