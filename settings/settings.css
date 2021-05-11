@@ -1,0 +1,145 @@
+@import url(https://fonts.googleapis.com/css?family=Dosis:700);
+body {
+    background-color: #ecf0f1;
+    font-weight: bold;
+    letter-spacing: -.035em;
+    overflow: visible;
+    font-family: "Dosis", Helvetica, Arial, sans-serif;
+    color: #34495e;
+    min-height: 200px;
+}
+
+#proj-name {
+    font-size: 2em;
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;
+}
+
+table {
+    background-color: #ecf0f1;
+    border: none;
+    width: 250px;
+    table-layout: auto;
+}
+
+#title {
+    background: transparent;
+    font-size: 1.25em;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: right;
+}
+
+tbody td {
+    border-top: 2px dashed #bdc3c7;
+}
+
+tfoot {
+    border-top: 2px solid #bdc3c7;
+}
+
+span {
+    background: transparent;
+    margin: auto 5px;
+    float: left;
+    text-align: left;
+    font-size: 1.5em;
+    line-height: 25px;
+}
+
+button {
+    padding: 5px;
+    color: white;
+    background-color: #34495e;
+    border: none;
+    border-radius: 2em;
+    font: 1.25em Arial;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #34495e;
+    margin: 10px 0;
+    outline: none;
+}
+
+#overlayDiv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index:99;
+    background: #34495e7c;
+}
+
+#overlayDiv p {
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#overlayDiv #elems {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#elems #btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#overlayDiv button {
+    margin: 0 5px;
+    background: white;
+    color: #34495e;
+    border: none;
+    border-radius: .25em;
+}
+
+#back {
+    margin-bottom: 15px;
+}
+/* hide scroll */
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    /* Remove scrollbar space */
+    background: transparent;
+}
+
+/* Optional: show position indicator in red */
+
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
+/* Hide input arrows */
+
+input.grade::-webkit-outer-spin-button, input.grade::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+a:link {
+    color: #34495e;
+}
+
+a:visited {
+    color: #34495e;
+}
+
+#num-criteria::-webkit-inner-spin-button, 
+#num-criteria::-webkit-outer-spin-button {  
+
+    opacity: 1;
+ 
+ }

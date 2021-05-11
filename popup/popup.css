@@ -43,11 +43,15 @@ tfoot {
     float: left;
 }
 
-.comment {
+textarea.comment {
     margin: 10px;
     height: 50px;
     width: 300px;
     border: none;
+    resize: none;
+    font: inherit;
+    font-size: 1.25em;
+    outline: none
 }
 
 .td-criteria {
@@ -111,6 +115,20 @@ span {
     line-height: 25px;
 }
 
+button {
+    padding: 5px;
+    color: white;
+    background-color: #34495e;
+    border: none;
+    border-radius: 2em;
+    font: 1.25em Arial;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #34495e;
+    margin: 10px 0;
+    outline: none;
+}
+
 /* hide scroll */
 
 html {
@@ -135,4 +153,12 @@ html {
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+a:link {
+    color: #34495e;
+}
+
+a:visited {
+    color: #34495e;
 }

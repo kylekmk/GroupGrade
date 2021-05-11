@@ -1,16 +1,191 @@
-#num-criteria{
-    width: 25px;
-    height: 25px;
+@import url(https://fonts.googleapis.com/css?family=Dosis:700);
+body {
+    background-color: #ecf0f1;
+    font-weight: bold;
+    letter-spacing: -.035em;
+    overflow: visible;
+    font-family: "Dosis", Helvetica, Arial, sans-serif;
+    color: #34495e;
+}
+
+#proj-name {
+    font-size: 2em;
+    width: 100%;
+    text-align: left;
+    vertical-align: middle;
+}
+
+table {
+    background-color: #ecf0f1;
+    border: 1px solid black;
+    width: 250px;
+    table-layout: auto;
+}
+
+thead {
+    background: transparent;
+    text-align: center;
+    font-size: 1.5em;
+    vertical-align: middle;
+    font-family: Arial, Helvetica, sans-serif;
+    border-bottom: 2px dashed #bdc3c7;
+}
+
+tbody td {
+    border-top: 2px dashed #bdc3c7;
+}
+
+tfoot {
+    border-top: 2px solid #bdc3c7;
+}
+
+.criteria-holder {
+    float: left;
+}
+
+textarea {
+    height: 30px;
+    margin: 10px 15px 16px 10px;
+    width: 150px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #2e3031;
+    background: transparent;
+    text-align: center;
+    font: inherit;
+    color: #34495e;
+    font-size: 1.25em;
+    vertical-align: middle;
+    font-family: Arial, Helvetica, sans-serif;
+    resize: none;
+}
+
+#name {
+    text-align: left;
+    height: 50px;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 1.65em;
+    overflow: visible;
 }
 
 .grade {
+    background: transparent;
+    border: none;
+    color: #34495e;
+    border-bottom: 2px solid #2e3031;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
     width: 50px;
-    height: 30px;
-    resize: none;
+    padding: 0 0;
+    margin: 0 0;
+    vertical-align: middle;
+    letter-spacing: -.035em;
+    text-shadow: white 1px 1px 1px;
+    overflow: visible;
+    outline: none;
 }
 
-.criteria {
-    width: 125px;
-    height: 30px;
-    resize: none;
+.maxPts {
+    float: left;
+    font-size: 2em;
+    margin: 0 0;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    color: #7a828a;
 }
+
+#num-label {
+    text-align: left;
+    margin: 0 0;
+}
+
+#num-criteria {
+    background: #f1f1f1;
+    border: none;
+    color: #34495e;
+    border: 2px solid #cdcaca;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.25em;
+    width: 50px;
+    padding: 0 0;
+    margin: 0 0;
+    vertical-align: middle;
+    letter-spacing: -.035em;
+    text-shadow: white 1px 1px 1px;
+    overflow: visible;
+    outline: none;
+}
+
+span {
+    background: transparent;
+    margin: auto 5px;
+    float: left;
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 25px;
+}
+
+button {
+    padding: 5px;
+    color: white;
+    background-color: #34495e;
+    outline: none;
+    border: none;
+    border-radius: 2em;
+    font: 1.25em Arial;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #34495e;
+    margin: 10px 0;
+}
+
+#save-box span {
+    color: red;
+    font-size: 1.25em;
+    text-align: right;
+}
+
+/* hide scroll */
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    /* Remove scrollbar space */
+    background: transparent;
+}
+
+/* Optional: show position indicator in red */
+
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+
+/* Hide input arrows */
+
+input.grade::-webkit-outer-spin-button, input.grade::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+a:link {
+    color: #34495e;
+}
+
+a:visited {
+    color: #34495e;
+}
+
+#num-criteria::-webkit-inner-spin-button, 
+#num-criteria::-webkit-outer-spin-button {  
+
+    opacity: 1;
+ 
+ }

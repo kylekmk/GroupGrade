@@ -15,8 +15,12 @@ document.addEventListener('DOMContentLoaded', function () {
             ],
             selected: 0
         };
-        Object.assign(projectFile, data.projects);
+        if (data.projects.projArr.length > 0) {
+            Object.assign(projectFile, data.projects);
+        }
 
+        console.log(projectFile);
+        
         const DELIM = "*!*flag*!*";
 
         var project = projectFile.projArr[projectFile.selected];
@@ -121,8 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Adds two text boxes, comment and grade
         function appendCriteria() {
             // create html elements
-            var newComment = document.createElement('input');
-            newComment.setAttribute('type', 'text');
+            var newComment = document.createElement('textarea');
             var newGrade = document.createElement('input');
             newGrade.setAttribute('type', 'number');
             var maxPts = document.createElement('span');
@@ -136,19 +139,19 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             newComment.className = 'comment';
             newComment.onchange = () => { saveComments(); };
+            newComment.tabIndex = comments.length + 1;
             comments.push(newComment);
 
             if (rubric_obj.grades.length > grades.length) {
                 newGrade.value = rubric_obj.grades[grades.length];
             }
             newGrade.className = 'grade';
-            newGrade.onchange = () => {
-                saveGrades();
-                totalPoints();
-            };
+            newGrade.onchange = () => saveGrades();
+            newGrade.oninput = () => totalPoints();
             newGrade.step = .25;
             newGrade.min = 0;
             newGrade.max = project.gradeVals[num_crit];
+            newGrade.tabIndex = project.fields + grades.length + 1;
             grades.push(newGrade);
 
             // Add to html elements
