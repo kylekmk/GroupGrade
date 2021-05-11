@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     projects.projArr = new Array();
                 }
 
-                // check for identical names
+                // check for identical names in projArr
                 var idx = projects.projArr.findIndex(elem => elem.name === projObj.name);
                 var nametaken = idx !== -1;
 
@@ -170,7 +170,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
                 if (proj_edit.isEditing) { // overwrite
-                    projects.projArr[idx] = projObj;
+                    var overwrite = projects.projArr.findIndex(elem => elem.name === proj_edit.edit.name);
+                    projects.projArr[overwrite] = projObj;
                 } else if (!nametaken) { // all good to add
                     projects.projArr.push(projObj);
                     console.log('pushing');
