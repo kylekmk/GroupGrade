@@ -5,7 +5,7 @@
     "content_scripts": [
         {
             "matches": [
-                "<all_urls>"
+                "https://*.instructure.com/courses/*/gradebook/speed_grader*"
             ],
             "js": [
                 "content.js"
@@ -18,7 +18,6 @@
     },
     "permissions": [
         "storage",
-        "clipboardWrite",
         "clipboardRead"
     ]
 }

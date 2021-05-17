@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         function selectProj(idx) {
             if (idx < tbody.rows.length) {
-                console.log("Idx: ", idx, "\nSelected: ", projectFile.selected);
                 var old_row = tbody.rows[projectFile.selected];
                 if (old_row !== undefined) {
                     old_row.querySelector('svg').style.fill = 'none';
@@ -66,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var proj_name = document.createElement('span');
             cell_name.appendChild(proj_name);
             proj_name.innerHTML = proj.name;
-            cell_name.onclick = () => selectProj(i);
+            // cell_name.onclick = () => selectProj(i);
 
             // add edit button
             var edit = document.createElement('button');
@@ -88,9 +87,11 @@ document.addEventListener('DOMContentLoaded', function () {
             var cell_select = row.insertCell(0);
             var svg = document.createElement('svg');
             cell_select.appendChild(svg);
-            cell_select.onclick = () => selectProj(i);
+            // cell_select.onclick = () => selectProj(i);
             svg.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="bi bi-check" viewBox="0 0 16 16"><path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/></svg>'
             svg.style.fill = 'none';
+
+            row.onclick = () => selectProj(i);
         }
 
         function editProj(val) {

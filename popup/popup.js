@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded', function () {
         var projectFile = {
             projArr: [
                 {
-                    name: "Default Project",
+                    name: 'Default Project',
                     fields: 1,
                     pointTotal: 5,
                     gradeVals: [5],
-                    criteria: ["Criteria"]
+                    criteria: ['Criteria']
                 }
             ],
             selected: 0
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
 
-        const DELIM = "*!*flag*!*";
+        const DELIM = '*!*flag*!*';
 
         var project = projectFile.projArr[projectFile.selected];
         var comments = new Array();
@@ -74,8 +74,10 @@ document.addEventListener('DOMContentLoaded', function () {
             rubric_obj.comments = [];
             rubric_obj.grades = [];
             for (i = 0; i < comments.length; i++) {
-                comments[i].value = "";
-                grades[i].value = "";
+                rubric_obj.comments[i] = '';
+                rubric_obj.grades[i] = '';
+                comments[i].value = '';
+                grades[i].value = '';
             }
             totalPoints();
         }

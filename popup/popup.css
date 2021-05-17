@@ -14,6 +14,12 @@ body {
     text-align: left;
     vertical-align: middle;
     margin: 0 0 0 0;
+    padding: 13px 0;
+}
+
+#add-proj {
+    float: right;
+    margin: 0 5px 0 100%;
 }
 
 table {
@@ -128,6 +134,7 @@ button {
     border: 2px solid #34495e;
     margin: 10px 5px;
     outline: none;
+    cursor: pointer;
 }
 
 #btn-box {

@@ -4,11 +4,11 @@ document.addEventListener('DOMContentLoaded', function () {
         // grab potential edit
         var proj_edit = {
             edit: {
-                name: "Project Name",
+                name: 'Project Name',
                 fields: 1,
                 pointTotal: 5,
                 gradeVals: [5],
-                criteria: ["Criteria"]
+                criteria: ['Criteria']
             },
             isEditing: false
         };
