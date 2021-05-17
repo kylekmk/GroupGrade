@@ -21,8 +21,8 @@ chrome.runtime.onMessage.addListener(function (request) {
       return;
    }
 
-   var comments = tbody.querySelectorAll('textarea');
-   var grades = tbody.querySelectorAll("input[type='text']");
+   var comments = tbody.querySelectorAll('.edit-freeform-comments-large textarea');
+   var grades = tbody.querySelectorAll(".graded-points input");
 
    console.log(comments);
    console.log(grades);
