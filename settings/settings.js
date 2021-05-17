@@ -23,11 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
 
-        var tbody = document.querySelector('tbody');
+        var tbody = document.querySelector('#rubric-body');
         populateTable();
-        if (projectFile.projArr.length > 0) {
-            selectProj(projectFile.selected);
-        }
 
         function populateTable() {
             var projects = projectFile.projArr === undefined ? [] : projectFile.projArr;
@@ -36,23 +33,29 @@ document.addEventListener('DOMContentLoaded', function () {
                 appendProject(elem, i);
                 i++;
             });
+
+            if (projectFile.projArr.length > 0) {
+                selectProj(projectFile.selected);
+            }
         }
 
         function selectProj(idx) {
-            // remove check
-            var old_row = tbody.rows[projectFile.selected];
-            old_row.querySelector('svg').style.fill = 'none';
+            if (idx < tbody.rows.length) {
+                console.log("Idx: ", idx, "\nSelected: ", projectFile.selected);
+                var old_row = tbody.rows[projectFile.selected];
+                if (old_row !== undefined) {
+                    old_row.querySelector('svg').style.fill = 'none';
+                }
+                // add check
+                var row = tbody.rows[idx];
+                projectFile.selected = idx;
+                chrome.storage.sync.set({ projects: projectFile }, () => {
+                    console.log('Saved Index', idx);
+                    var svg = row.querySelector('svg');
+                    svg.style.fill = 'green';
+                });
 
-            // add check
-            var row = tbody.rows[idx];
-            projectFile.selected = idx;
-            chrome.storage.sync.set({ projects: projectFile }, () => {
-                console.log('Saved');
-                var svg = row.querySelector('svg');
-                svg.style.fill = 'green'
-            });
-
-
+            }
         }
 
         function appendProject(proj, i) {
@@ -91,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         function editProj(val) {
-            projectFile.selected = val;
+            projectFile.selected = parseInt(val);
             chrome.storage.sync.set({ proj_edit: { edit: projectFile.projArr[val], isEditing: true } }, () => {
                 console.log('Saved: ', projectFile.projArr[val]);
             });
@@ -102,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         function deleteConf(msg, val) {
-            dialogConfirm(msg, val);
+            dialogConfirm(msg, parseInt(val));
         }
 
         function dialogConfirm(msg, val) {
@@ -129,7 +132,14 @@ document.addEventListener('DOMContentLoaded', function () {
             div.appendChild(elems);
 
             yes.onclick = () => {
-                deleteProj(val);
+                console.log(val);
+                deleteProj('VAL: ', val);
+                if (val === projectFile.selected) {
+                    console.log('Deleting selected')
+                    projectFile.selected = projectFile.selected - 1 > 0 ? projectFile.selected - 1 : projectFile.selected;
+                } else if (val < projectFile.selected) {
+                    projectFile.selected--;
+                }
                 div.remove();
             }
 
@@ -141,12 +151,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         function deleteProj(val) {
-            var proj = projectFile.projArr[val];
+            var proj = projectFile.projArr[val]
             console.log(proj);
             projectFile.projArr.splice(val, 1);
-            if (projectFile.selected > projectFile.projArr.length - 1){
-                projectFile.selected = projectFile.projArr.length - 1;
-            }
 
             chrome.storage.sync.set({ projects: projectFile }, () => {
                 console.log('Saved: ', projectFile.projArr[val]);

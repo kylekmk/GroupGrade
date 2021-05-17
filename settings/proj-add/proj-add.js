@@ -116,18 +116,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // save the project obj
         function saveProject() {
+            var valid = document.querySelector('#name').value.split(' ').join('') !== '';
 
             // make criteria title array
             var critNames = new Array();
             criteria.forEach(elem => {
+                if (elem.value.split(' ').join('') === '') {
+                    valid = false;
+                    elem.style.borderBottom = '2px solid red';
+                } else {
+                    elem.style.borderBottom = '';
+                }
                 critNames.push(elem.value);
             });
 
             // make grade value array
             var gradeVals = new Array();
             grades.forEach(elem => {
+                if (elem.value.split(' ').join('') === '') {
+                    valid = false;
+                    elem.style.borderBottom = '2px solid red';
+                } else {
+                    elem.style.borderBottom = '';
+                }
                 gradeVals.push(elem.value);
             });
+
+            var warning = document.querySelector('#save-box span');
+            if (!warning) {
+                warning = document.createElement('span');
+            }
+            console.log(warning);
+
+            if (valid) {
+                warning.remove();
+            } else {
+                warning.innerHTML = 'Some input fields are empty';
+                document.querySelector('#save-box').appendChild(warning);
+                console.log('added');
+                return;
+            }
 
             // object to be saved
             var projectObj = {};
@@ -165,29 +193,29 @@ document.addEventListener('DOMContentLoaded', function () {
                 var idx = projects.projArr.findIndex(elem => elem.name === projObj.name);
                 var nametaken = idx !== -1;
 
-                console.log(idx);
-                console.log(nametaken);
-
                 if (nametaken) { // cannot add project with the same name
-                    if (document.querySelector('#save-box span') === null) {
-                        var warning = document.createElement('span');
-                        warning.innerHTML = 'Name taken, change the project name'
-                        document.querySelector('#save-box').appendChild(warning);
-                        console.log('added');
+                    if (!proj_edit.isEditing || proj_edit.isEditing && proj_edit.edit.name !== projects.projArr[idx].name) {
+                        if (document.querySelector('#save-box span') === null) {
+                            var warning = document.createElement('span');
+                            warning.innerHTML = 'Name taken, change the project name'
+                            document.querySelector('#save-box').appendChild(warning);
+                            console.log('added');
+                        }
+                        return;
                     }
-                    console.log(document.querySelector('#save-box span'));
-                    return;
-                }
 
+
+                }
 
                 if (proj_edit.isEditing) { // overwrite
                     var overwrite = projects.projArr.findIndex(elem => elem.name === proj_edit.edit.name);
                     projects.projArr[overwrite] = projObj;
+                    console.log('overwrite')
                 } else { // all good to add
                     projects.projArr.push(projObj);
                     console.log('pushing');
-                } 
-                
+                }
+
 
                 projects.selected = projects.projArr.length - 1;
                 chrome.storage.sync.set({ projects: projects }, () => {
