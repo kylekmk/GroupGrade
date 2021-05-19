@@ -8,11 +8,16 @@ Group grade is a Chrome Extension which was created to make group project gradin
 To create a rubric click the add button on both the main menu and the settings menu. Customize your rubric by specifying the amount of criteria and value for each criteria. If you want to change your rubric or remove it, simply edit or delete it!
 
 ![alt text](https://github.com/kylekmk/GroupGrade/blob/main/screenshots/create.gif?raw=true)
+
 ## Rubric Selection
 Select your rubric by clicking it on the settings screen!
+
 ![alt text](https://github.com/kylekmk/GroupGrade/blob/main/screenshots/select.gif?raw=true)
+
 ## Filling in the Rubric
 Fill in comment and grade values and click "autofill" while the Canvas Speed Grader is open to grade a student project!
+
 ![alt text](https://github.com/kylekmk/GroupGrade/blob/main/screenshots/fill.gif?raw=true)
+
 ## Autofill Grades
 Once grades are autofilled, you can read them one last time before you submit. For privacy reasons I cannot show a student's rubric being filled out.
